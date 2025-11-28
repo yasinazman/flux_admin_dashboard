@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders - Flux Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar p-0 collapse d-md-block" id="sidebarMenu">
+                <div class="sidebar-logo">
+                    <div class="bg-warning text-black rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                        <i class="fa-solid fa-bolt fa-xl"></i>
+                    </div>
+                    <h4 class="mt-2">Flux Admin</h4>
+                </div>
+
+                <div class="d-flex flex-column flex-grow-1"> 
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-2 text-muted text-uppercase small">
+                        <span>Main Menu</span>
+                    </h6>
+        
+                    <a href="dashboard.html" class="nav-link mb-2"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
+                    <a href="products.html" class="nav-link mb-2"><i class="fa-solid fa-box me-2"></i> Products</a>
+                    <a href="orders.html" class="nav-link mb-2"><i class="fa-solid fa-cart-shopping me-2"></i> Orders</a>
+                    <a href="customers.html" class="nav-link mb-2"><i class="fa-solid fa-users me-2"></i> Customers</a>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-2 text-muted text-uppercase small">
+                        <span>Analytics</span>
+                    </h6>
+
+                    <a href="sales_report.html" class="nav-link mb-2"><i class="fa-solid fa-chart-line me-2"></i> Sales Report</a>
+                    <a href="transactions.html" class="nav-link mb-2"><i class="fa-solid fa-file-invoice-dollar me-2"></i> Transactions</a>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-2 text-muted text-uppercase small">
+                        <span>System</span>
+                    </h6>
+                    
+                    <a href="settings.html" class="nav-link mb-2"><i class="fa-solid fa-gear me-2"></i> Settings</a>
+                    <a href="help_center.html" class="nav-link mb-2"><i class="fa-solid fa-circle-question me-2"></i> Help Center</a>
+                </div>
+                <div class="mt-auto text-center p-3 small">&copy; 2025 MyShop</div>
+            </div>
+
+            <main class="col-md-10 ms-sm-auto p-0">
+
+                <header class="main-header d-flex justify-content-between align-items-center sticky-top border-bottom">
+                    
+                    <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div class="d-none d-md-block"></div> 
+
+                    <div class="d-flex align-items-center gap-3">
+
+                        <i class="fa-solid fa-moon header-icon" id="themeIcon" onclick="toggleTheme()" title="Toggle Theme"></i>
+
+                        <div class="position-relative">
+                            <i class="fa-solid fa-bell header-icon"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                                <span class="visually-hidden">New alerts</span>
+                            </span>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark" data-bs-toggle="dropdown">
+                                <img src="https://ui-avatars.com/api/?name=Admin+User&background=random" alt="" width="32" height="32" class="rounded-circle me-2">
+                                <span class="d-none d-sm-inline">Admin User</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="index.html">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- PAGE CONTENT WRAPPER (Fixes the sizing issue) -->
+                <div class="p-4">
+                    
+                    <h2 class="mb-4">Order History</h2>
+
+                    <!-- Tabs -->
+                    <ul class="nav nav-tabs mb-4">
+                        <li class="nav-item"><a class="nav-link active" href="#">All Orders</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Pending</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Shipped</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Completed</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Cancelled</a></li>
+                    </ul>
+
+                    <!-- Orders Table -->
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-0">
+                            <div class="table-responsive rounded-3 border shadow-sm">
+                                <table class="table table-hover align-middle mb-0 table-modern text-center">
+                                    <thead>
+                                        <tr>
+                                            <th class="ps-4 text-start">Order ID</th>
+                                            <th>Date</th>
+                                            <th class="text-start">Customer</th>
+                                            <th>Status</th>
+                                            <th>Amount</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-start ps-4">
+                                                <span class="fw-bold text-primary">#ORD-7782</span>
+                                            </td>
+                                            <td class="text-muted">Oct 24, 2025</td>
+                                            <td class="text-start fw-bold">Zul Ariffin</td>
+                                            <td>
+                                                <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill">Shipped</span>
+                                            </td>
+                                            <td class="fw-bold">RM 99.00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-light text-dark border-0 shadow-sm" onclick="viewOrder(this)">
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-start ps-4">
+                                                <span class="fw-bold text-primary">#ORD-7783</span>
+                                            </td>
+                                            <td class="text-muted">Oct 23, 2025</td>
+                                            <td class="text-start fw-bold">Sarah Tan</td>
+                                            <td>
+                                                <span class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill">Pending</span>
+                                            </td>
+                                            <td class="fw-bold">RM 289.00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-light text-dark border-0 shadow-sm" onclick="viewOrder(this)">
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-start ps-4">
+                                                <span class="fw-bold text-primary">#ORD-7784</span>
+                                            </td>
+                                            <td class="text-muted">Oct 22, 2025</td>
+                                            <td class="text-start fw-bold">John Cena</td>
+                                            <td>
+                                                <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill">Cancelled</span>
+                                            </td>
+                                            <td class="fw-bold">RM 289.00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-light text-dark border-0 shadow-sm" onclick="viewOrder(this)">
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-start ps-4">
+                                                <span class="fw-bold text-primary">#ORD-7785</span>
+                                            </td>
+                                            <td class="text-muted">Oct 21, 2025</td>
+                                            <td class="text-start fw-bold">Mei Ling</td>
+                                            <td>
+                                                <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill">Shipped</span>
+                                            </td>
+                                            <td class="fw-bold">RM 159.00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-light text-dark border-0 shadow-sm" onclick="viewOrder(this)">
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="text-start ps-4">
+                                                <span class="fw-bold text-primary">#ORD-7786</span>
+                                            </td>
+                                            <td class="text-muted">Oct 19, 2025</td>
+                                            <td class="text-start fw-bold">Khairul Ah Meng</td>
+                                            <td>
+                                                <span class="badge bg-info-subtle text-info border border-info rounded-pill px-3">Completed</span>
+                                            </td>
+                                            <td class="fw-bold">RM 2,000.00</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-light text-dark border-0 shadow-sm" onclick="viewOrder(this)">
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination (Bonus Visual) -->
+                    <nav class="mt-4">
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- FIXED: Changed to 5.3.0 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Added Script Link -->
+    <script src="script.js"></script>
+</body>
+</html>

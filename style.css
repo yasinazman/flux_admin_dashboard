@@ -1,0 +1,253 @@
+/* General Body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s, color 0.3s; /* Smooth Dark Mode Transition */
+}
+
+/* ====================================================================== SIDEBAR STYLING --- */
+.sidebar {
+    min-height: 100vh;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sidebar Logo Area */
+.sidebar-logo {
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.sidebar-logo h4 {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* Sidebar Links */
+.sidebar .nav-link {
+    color: #adb5bd;
+    font-size: 1.1rem;
+    padding: 15px 25px;
+    border-left: 8px solid transparent;
+    transition: all 0.3s;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active { /* Cursor Hover */
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff !important; 
+    border-left-color: #DFCBB2;
+}
+
+.sidebar .nav-link i {
+    width: 30px;
+}
+
+/* ====================================================================== HEADER STYLING --- */
+.main-header {
+    background-color: #ffffff;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+/* Icon Buttons in Header */
+.header-icon {
+    font-size: 1.2rem;
+    color: #555;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+[data-bs-theme="dark"] .header-icon {
+    color: #ddd;
+}
+
+.header-icon:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+/* ====================================================================== Dark Mode for Header & sidebar */
+[data-bs-theme="dark"] .main-header {
+    background-color: #212529;
+    border-bottom: 1px solid #333;
+}
+
+/* --- LIGHT MODE (Light Theme) --- */
+[data-bs-theme="light"] .sidebar {
+    background-color: #ffffff !important;
+    border-right: 1px solid #dee2e6;
+}
+
+[data-bs-theme="light"] .sidebar .nav-link {
+    color: #212529 !important;
+    font-weight: 500;
+}
+
+[data-bs-theme="light"] .sidebar .nav-link:hover, /* Hover Effect */
+[data-bs-theme="light"] .sidebar .nav-link.active {
+    background-color: #ffde2230;
+    color: #9b6d00 !important; 
+    border-left-color: #5c4e00;
+}
+
+[data-bs-theme="light"] .sidebar-logo h4 {
+    color: #212529 !important;
+}
+
+/* --- DARK MODE (Dark Theme) --- */
+[data-bs-theme="dark"] .sidebar {
+    background-color: #212529 !important;
+    border-right: 1px solid #373b3e;
+}
+
+[data-bs-theme="dark"] .sidebar .nav-link {
+    color: #adb5bd !important;
+    font-weight: 500;
+}
+
+[data-bs-theme="dark"] .sidebar .nav-link:hover, /* Hover Effect */
+[data-bs-theme="dark"] .sidebar .nav-link.active {
+    background-color: rgba(124, 95, 0, 0.126);
+    color: #ffffff !important;
+    border-left-color: #9b6d00; 
+}
+
+[data-bs-theme="dark"] .sidebar-logo h4 {
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .card { /* --- CARD & MODAL FIXES FOR DARK MODE --- */
+    background-color: #2b3035;
+    border-color: #373b3e;
+    color: #fff;
+}
+[data-bs-theme="dark"] .modal-content {
+    background-color: #2b3035;
+    color: #fff;
+}
+
+/* ===================================================================== LOGIN.html PAGE STYLING --- */
+.login-card {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-logo {
+    width: 70px;
+    height: 70px;
+}
+
+/* ====================================================================== PRODUCT.html --- */
+/* images size */
+.product-card img {
+    height: 300px;       
+    width: 100%;         
+    object-fit: cover;   
+    object-position: center; 
+}
+/* title product*/
+.card-title {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+/* price tag */
+.price-tag {
+    font-size: 1.1rem;
+}
+
+/* ====================================================================== ORDERS.html --- */
+.nav-tabs .nav-link { /* order tabs font */
+    color: #6c757d;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* Effect in Light Mode*/
+[data-bs-theme="light"] .nav-tabs .nav-link:hover { /* order tabs Hover */
+    background-color: #9b6d0033;
+    color: #9b6d00 !important;
+}
+
+[data-bs-theme="light"] .nav-tabs .nav-link.active { /* order tabs font */
+    color: #5c4e00 !important;
+    font-weight: bold;
+    border-bottom: 3px solid #5c4e00;
+}
+
+/* Effect in Dark Mode */
+[data-bs-theme="dark"] .nav-tabs .nav-link:hover { /* Hover */
+    background-color: #9b6d0033;
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .nav-tabs .nav-link.active { /* Font Hover */
+    color: #a68332 !important;
+    font-weight: bold;
+    border-bottom: 3px solid #a68332;
+}
+
+/* ======================================================================= CUSTOMERS.html --- */
+/* avatar */
+.avatar-img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* --- SALES REPORT CHART --- */
+.chart-container-large {
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+
+/*======================================================================== SETTING.html*/
+/* --- SETTINGS PAGE: Custom Active State --- */
+.list-group-item.active {
+    background-color: #9b6d00 !important;
+    border-color: #9b6d00 !important;
+    color: white !important;
+}
+
+[data-bs-theme="dark"] .list-group-item { /* Dark Mode overrides for Settings Menu */
+    background-color: #2b3035;
+    color: #e0e0e0;
+    border-color: #373b3e;
+}
+
+[data-bs-theme="dark"] .list-group-item.active {
+    background-color: #9b6d00;
+    border-color: #9b6d00;
+    color: white;
+}
+
+[data-bs-theme="dark"] .accordion-button {
+    background-color: #2b3035;
+    color: #e0e0e0;
+}
+
+[data-bs-theme="dark"] .accordion-item {
+    background-color: #2b3035;
+    border-color: #373b3e;
+    color: #e0e0e0;
+}
+
+/* Increase row height/gap ORDERS & CUSTOMER===== */
+.table-modern tbody td {
+    padding-top: 25px !important;    
+    padding-bottom: 25px !important; /
+}

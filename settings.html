@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Flux Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar p-0 collapse d-md-block" id="sidebarMenu">
+                <div class="sidebar-logo">
+                    <div class="bg-warning text-black rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                        <i class="fa-solid fa-bolt fa-xl"></i>
+                    </div>
+                    <h4 class="mt-2">Flux Admin</h4>
+                </div>
+
+                <div class="d-flex flex-column flex-grow-1"> 
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-2 text-muted text-uppercase small">
+                        <span>Main Menu</span>
+                    </h6>
+        
+                    <a href="dashboard.html" class="nav-link mb-2"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
+                    <a href="products.html" class="nav-link mb-2"><i class="fa-solid fa-box me-2"></i> Products</a>
+                    <a href="orders.html" class="nav-link mb-2"><i class="fa-solid fa-cart-shopping me-2"></i> Orders</a>
+                    <a href="customers.html" class="nav-link mb-2"><i class="fa-solid fa-users me-2"></i> Customers</a>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-2 text-muted text-uppercase small">
+                        <span>Analytics</span>
+                    </h6>
+
+                    <a href="sales_report.html" class="nav-link mb-2"><i class="fa-solid fa-chart-line me-2"></i> Sales Report</a>
+                    <a href="transactions.html" class="nav-link mb-2"><i class="fa-solid fa-file-invoice-dollar me-2"></i> Transactions</a>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-2 text-muted text-uppercase small">
+                        <span>System</span>
+                    </h6>
+                    
+                    <a href="settings.html" class="nav-link mb-2"><i class="fa-solid fa-gear me-2"></i> Settings</a>
+                    <a href="help_center.html" class="nav-link mb-2"><i class="fa-solid fa-circle-question me-2"></i> Help Center</a>
+                </div>
+                <div class="mt-auto text-center p-3 small">&copy; 2025 MyShop</div>
+            </div>
+
+            <main class="col-md-10 ms-sm-auto p-0">
+                
+                <header class="main-header d-flex justify-content-between align-items-center sticky-top border-bottom">
+                    
+                    <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div class="d-none d-md-block"></div> 
+
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-moon header-icon" id="themeIcon" onclick="toggleTheme()" title="Toggle Theme"></i>
+                        
+                        <div class="position-relative">
+                            <i class="fa-solid fa-bell header-icon"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                                <span class="visually-hidden">New alerts</span>
+                            </span>
+                        </div>
+
+                        <div class="dropdown">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark" data-bs-toggle="dropdown">
+                                <img src="https://ui-avatars.com/api/?name=Admin+User&background=random" alt="" width="32" height="32" class="rounded-circle me-2">
+                                <span class="d-none d-sm-inline">Admin User</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="index.html">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="p-4">
+
+                    <h2 class="mb-4">Settings</h2>
+
+                    <div class="row">
+                        <div class="col-md-3 mb-4">
+                            <div class="list-group shadow-sm border-0 rounded-3 overflow-hidden">
+                                <a href="#" class="list-group-item list-group-item-action active border-0 py-3">
+                                    <i class="fa-solid fa-sliders me-2"></i> General
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action border-0 py-3">
+                                    <i class="fa-regular fa-user me-2"></i> Account
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action border-0 py-3">
+                                    <i class="fa-regular fa-bell me-2"></i> Notifications
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action border-0 py-3">
+                                    <i class="fa-solid fa-shield-halved me-2"></i> Security
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="card shadow border-0 rounded-3">
+                                <div class="card-header bg-transparent border-bottom py-3">
+                                    <h5 class="mb-0 fw-bold">General Settings</h5>
+                                </div>
+                                <div class="card-body p-4">
+                                    <form onsubmit="event.preventDefault(); alert('Settings Saved Successfully!');">
+                                        
+                                        <div class="d-flex align-items-center mb-4">
+                                            <div class="bg-warning text-black rounded-circle d-inline-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 64px; height: 64px;">
+                                                <i class="fa-solid fa-bolt fa-2x"></i>
+                                            </div>                                            
+                                            <div class="w-100">
+                                                <label class="form-label fw-bold mb-0">Store Logo</label>
+                                                <div class="small text-muted mb-2">Recommended size: 500x500px</div>
+                                                <input type="file" class="form-control form-control-sm w-100" style="max-width: 300px;">
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3 mb-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-bold small text-uppercase text-muted">Store Name</label>
+                                                <input type="text" class="form-control" value="Flux Store">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label fw-bold small text-uppercase text-muted">Owner Name</label>
+                                                <input type="text" class="form-control" value="Admin User">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label fw-bold small text-uppercase text-muted">Support Email</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text text-muted"><i class="fa-solid fa-envelope"></i></span>
+                                                <input type="email" class="form-control" value="support@fluxstore.com">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold small text-uppercase text-muted">Currency</label>
+                                            <select class="form-select">
+                                                <option selected>MYR (Ringgit Malaysia)</option>
+                                                <option>USD (US Dollar)</option>
+                                                <option>SGD (Singapore Dollar)</option>
+                                            </select>
+                                        </div>
+
+                                        <hr class="my-4 text-muted">
+
+                                        <div class="form-check form-switch mb-4">
+                                            <input class="form-check-input" type="checkbox" id="maintenanceMode">
+                                            <label class="form-check-label fw-bold" for="maintenanceMode">Enable Maintenance Mode</label>
+                                            <div class="form-text">This will hide your store from customers while you make changes.</div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button type="button" class="btn btn-light border">Cancel</button>
+                                            <button type="submit" class="btn btn-primary px-4">Save Changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
