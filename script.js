@@ -1,59 +1,59 @@
-/* =========================================
-   SECTION 1: GLOBAL VARIABLES & UTILITIES
-   ========================================= */
+// === GLOBAL VARIABLES & UTILITIES ===
 
-// Global variables to help us track which row or card we are editing
 let currentProductCard; 
 let currentRow;
 
-/* --- DARK MODE TOGGLE --- */
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-bs-theme', savedTheme);
+
+// DARK MODE TOGGLE (Save when switch every pages)
 function toggleTheme() {
     const html = document.documentElement;
     const currentTheme = html.getAttribute('data-bs-theme');
     const icon = document.getElementById('themeIcon');
-    
-    // Simple if-else to switch themes
-    if (currentTheme === 'dark') {
-        html.setAttribute('data-bs-theme', 'light');
-        // Change icon to moon
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-    } else {
-        html.setAttribute('data-bs-theme', 'dark');
-        // Change icon to sun
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
+    let newTheme = 'light';
+
+    if (currentTheme === 'light') {
+        newTheme = 'dark';
+    }
+
+    html.setAttribute('data-bs-theme', newTheme);
+
+    localStorage.setItem('theme', newTheme);
+
+    if (icon) {
+        if (newTheme === 'dark') {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
     }
 }
 
-/* =========================================
-    SECTION 2: CUSTOMER PAGE 
-   ========================================= */
+// === CUSTOMERS.HTML PAGE ===
 
-function openEditModal(button) { // Function to open the modal and fill it with data
+function openEditModal(button) { 
     
-    currentRow = button.closest("tr"); // Find the row (tr) that the button belongs to
+    currentRow = button.closest("tr");
     
-    // Get values from the table cells
     const name = currentRow.querySelector(".fw-bold").innerText;
     const email = currentRow.cells[1].innerText;
     const phone = currentRow.cells[2].innerText;
     const status = currentRow.querySelector(".badge").innerText;
 
-    // Set values in the form input boxes
     document.getElementById("editName").value = name;
     document.getElementById("editEmail").value = email;
     document.getElementById("editPhone").value = phone;
     document.getElementById("editStatus").value = status;
 
-    // Show the modal
     const myModal = new bootstrap.Modal(document.getElementById('editCustomerModal'));
     myModal.show();
 }
 
 // Function to save changes made in the modal
 function saveCustomerChanges() {
-    // Get new values from the form
     const newName = document.getElementById("editName").value;
     const newEmail = document.getElementById("editEmail").value;
     const newPhone = document.getElementById("editPhone").value;
@@ -75,7 +75,6 @@ function saveCustomerChanges() {
         badge.classList.add("bg-secondary-subtle", "text-secondary");
     }
 
-    // Close the modal manually
     const modalElement = document.getElementById('editCustomerModal');
     const modalInstance = bootstrap.Modal.getInstance(modalElement);
     modalInstance.hide();
@@ -89,7 +88,6 @@ function addNewCustomer() {
 
     if(!name || !email) { alert("Fill required fields!"); return; }
 
-    // Get today's date in "Mon DD, YYYY" format (Optional polish)
     const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
     const newRow = `
@@ -134,22 +132,20 @@ function filterCustomers() {
         const rowText = row.innerText.toLowerCase();
         
         if (rowText.includes(input)) {
-            row.style.display = ""; // Show row
+            row.style.display = ""; 
         } else {
-            row.style.display = "none"; // Hide row
+            row.style.display = "none"; 
         }
     });
 }
 
-/* --- DELETE FUNCTION --- */
+// DELETE FUNCTION 
 function deleteCustomer(button) {
     if (confirm("Are you sure you want to delete this?")) {
-        // Check if it is a row
         const row = button.closest("tr");
         if (row) {
             row.remove();
         } else {
-            // If not a row, check if it is a card
             const card = button.closest(".col-md-6");
             if (card) {
                 card.remove();
@@ -158,9 +154,7 @@ function deleteCustomer(button) {
     }
 }
 
-/* =========================================
-   SECTION 3: PRODUCT PAGE LOGIC
-   ========================================= */
+// === PRODUCTS.HTML PAGE ===
 function openEditProductModal(button) {
     currentProductCard = button.closest(".card");
     
@@ -233,7 +227,7 @@ function addNewProduct() {
         alert("Please enter a Name and Price!");
     } else {
         
-        // Determine Badge Color
+        // Badge Color
         let badgeClass = "bg-success-subtle text-success border border-success rounded-pill px-3";
         
         if (status === "Low Stock") {
@@ -289,15 +283,13 @@ function addNewProduct() {
         }
     }
 }
-/* --- DELETE FUNCTION --- */
+// DELETE FUNCTION
 function deleteProduct(button) {
     if (confirm("Are you sure you want to delete this?")) {
-        // Check if it is a row
         const row = button.closest("tr");
         if (row) {
             row.remove();
         } else {
-            // If not a row, check if it is a card
             const card = button.closest(".col-md-6");
             if (card) {
                 card.remove();
@@ -306,9 +298,7 @@ function deleteProduct(button) {
     }
 }
 
-/* =========================================
-   SECTION 4: ORDERS
-   ========================================= */
+// === ORDERS.HTML PAGE ===
 
 function viewOrder(button) {
     const row = button.closest("tr");
@@ -317,48 +307,40 @@ function viewOrder(button) {
     alert("Viewing Order: " + orderID + "\nCustomer: " + customerName);
 }
 
-/* =========================================
-   TRANSACTIONS
-   ========================================= */
+// === TRANSACTIONS.HTML PAGE ===
 
 function filterTransactions() {
-    // 1. Get values from the HTML inputs
     const searchInput = document.getElementById("trxSearch").value.toLowerCase();
     const statusFilter = document.getElementById("trxStatusFilter").value;
-    
-    // 2. Get all table rows
+  
     const rows = document.querySelectorAll("tbody tr");
 
     rows.forEach(function(row) {
-        // 3. Extract data from specific columns
-        // Column 0 = ID, Column 2 = Customer Name
+
         const idText = row.cells[0].innerText.toLowerCase();
         const nameText = row.cells[2].innerText.toLowerCase();
-        
-        // Find the badge text for status
         const statusText = row.querySelector(".badge").innerText.trim();
-
-        // 4. Check matches
-        // Search Match: Does the ID OR Name contain the typed text?
         const matchesSearch = idText.includes(searchInput) || nameText.includes(searchInput);
-        
-        // Status Match: Is filter "All" OR does status match exactly?
         const matchesStatus = (statusFilter === "All Status") || (statusText === statusFilter);
 
-        // 5. Show or Hide Row
         if (matchesSearch && matchesStatus) {
-            row.style.display = ""; // Show
+            row.style.display = ""; 
         } else {
-            row.style.display = "none"; // Hide
+            row.style.display = "none"; 
         }
     });
 }
 
-/* =========================================
-   SECTION 5: PAGE LOAD
-   ========================================= */
-   
+// === PAGE LOAD ===
 document.addEventListener("DOMContentLoaded", function() {
+    
+    // --- Fix Icon on Page Load ---
+    const savedTheme = localStorage.getItem('theme');
+    const icon = document.getElementById('themeIcon');
+    if (savedTheme === 'dark' && icon) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    }
     
     // Sidebar Active Link Highlighting
     const currentLocation = window.location.href;
@@ -397,32 +379,31 @@ document.addEventListener("DOMContentLoaded", function() {
             tab.addEventListener('click', function(e) {
                 e.preventDefault();
 
-                // 1. Visual: Update Active Tab
                 tabs.forEach(function(t) {
                     t.classList.remove('active');
                 });
                 this.classList.add('active');
 
-                const selectedCategory = this.innerText.trim(); // 2. Logic: Get the category name from the tab
+                const selectedCategory = this.innerText.trim(); 
 
                 rows.forEach(function(row) {
-                    const statusBadge = row.querySelector('.badge').innerText.trim();// Find the badge text inside this row
+                    const statusBadge = row.querySelector('.badge').innerText.trim();
 
-                    if (selectedCategory === "All Orders") { // STRICT LOGIC RULES:
-                        row.style.display = ""; // Show all
+                    if (selectedCategory === "All Orders") { 
+                        row.style.display = "";
                     } 
                     else if (statusBadge === selectedCategory) {
                         row.style.display = "";
                     } 
                     else {
-                        row.style.display = "none"; // Hide non-matching rows
+                        row.style.display = "none"; 
                     }
                 });
             });
         });
     }
 
-    // Dashboard.html Charts
+    // Dashboard.html Sales Performance Charts
     const salesCtx = document.getElementById('salesBarChart');
     if (salesCtx) {
         new Chart(salesCtx.getContext('2d'), {
@@ -438,7 +419,7 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // <--- THIS MUST BE FALSE
+                maintainAspectRatio: false, 
                 plugins: { legend: { display: false } },
                 scales: {
                     x: { grid: { display: false } },
@@ -447,7 +428,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-
+    // Dashboard.html Customer by State chart
     const demoCtx = document.getElementById('demographicChart');
     if (demoCtx) {
         new Chart(demoCtx.getContext('2d'), {
@@ -472,6 +453,124 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Dashboard.html Mini Pie Chart (Device Usage)
+    const miniPieCtx = document.getElementById('miniPieChart');
+    if (miniPieCtx) {
+        new Chart(miniPieCtx.getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Desktop', 'Mobile', 'Tablet'],
+                datasets: [{
+                    data: [55, 35, 10],
+                    backgroundColor: ['#0d6efd', '#ffc107', '#198754'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { 
+                    legend: { 
+                        display: true,
+                        position: 'right'
+                    } 
+                }
+            }
+        });
+    }
+
+    // Dashboard.html Mini Line Graph (Weekly Traffic)
+    const miniLineCtx = document.getElementById('miniLineChart');
+    if (miniLineCtx) {
+        new Chart(miniLineCtx.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+                datasets: [{
+                    label: 'Visits',
+                    data: [150, 230, 180, 320, 290, 140, 190],
+                    borderColor: '#0dcaf0',
+                    backgroundColor: 'rgba(13, 202, 240, 0.1)',
+                    borderWidth: 2,
+                    pointRadius: 3, 
+                    tension: 0.4    
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { 
+                    legend: { display: false } 
+                },
+                scales: { 
+                    x: { 
+                        display: true, 
+                        grid: { display: false } 
+                    }, 
+                    y: { 
+                        display: true,
+                        ticks: {
+                            count: 5 
+                        }
+                    } 
+                }
+            }
+        });
+    }
+
+    // Dashboard.html Mini Area Chart (Active Users)
+    const miniAreaCtx = document.getElementById('miniAreaChart');
+    if (miniAreaCtx) {
+        new Chart(miniAreaCtx.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['10am', '12pm', '2pm', '4pm', '6pm'],
+                datasets: [
+                    {
+                        label: 'Today',
+                        data: [50, 120, 160, 140, 200],
+                        borderColor: '#6610f2',
+                        backgroundColor: 'rgba(102, 16, 242, 0.2)', 
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 3 // Dots visible
+                    },
+                    {
+                        label: 'Yesterday', 
+                        data: [40, 90, 110, 130, 150],
+                        borderColor: '#171718ff',
+                        backgroundColor: 'rgba(0, 0, 0, 0.51)', 
+                        borderWidth: 2,
+                        borderDash: [5, 5], // Dashed line (past)
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0 // Dots invisible
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { 
+                    legend: { 
+                        display: true, 
+                        position: 'top',
+                        labels: { 
+                            boxWidth: 8,
+                            usePointStyle: true,
+                            font: { size: 10 }
+                        }
+                    } 
+                },
+                scales: { 
+                    x: { display: true, grid: { display: false } }, 
+                    y: { display: true, ticks: { count: 5 } }       
+                }
+            }
+        });
+    }
+
     // Sales_Report.html Chart
     const reportCtx = document.getElementById('salesReportChart');
     if (reportCtx) {
@@ -482,7 +581,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 datasets: [{
                     label: 'Sales 2025 (RM)',
                     data: [12000, 19000, 30000, 50000, 20000, 30000, 45000, 40000, 55000, 60000, 75000, 90000],
-                    borderColor: '#4a148c', // Purple theme
+                    borderColor: '#4a148c', 
                     backgroundColor: 'rgba(74, 20, 140, 0.1)',
                     borderWidth: 2,
                     fill: true,
@@ -496,19 +595,157 @@ document.addEventListener("DOMContentLoaded", function() {
                     legend: { display: false }
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: { color: '#f0f0f0' }
+                    x: { grid: { display: false } },
+                    y: { beginAtZero: true,}
+                }
+            }
+        });
+    }
+    // Sales_Report.html Revenue by Source Chart (Doughnut)
+    const sourceCtx = document.getElementById('revenueSourceChart');
+    if (sourceCtx) {
+        new Chart(sourceCtx.getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Online Store', 'Social Media', 'Direct Sales'],
+                datasets: [{
+                    data: [55, 30, 15],
+                    backgroundColor: [
+                        '#0d6efd',
+                        '#0dcaf0', 
+                        '#ffc107'  
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70 %', 
+                plugins: {
+                    legend: {
+                        display: false 
                     },
-                    x: {
-                        grid: { display: false }
+                    tooltip: {
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        padding: 10,
+                        cornerRadius: 5
                     }
                 }
             }
         });
     }
 
-    // Calender - Set Date Picker to Today (extra effects)
+    // Sales_Report.html Pie Chart (Sales by Category)
+    const catPieCtx = document.getElementById('categoryPieChart');
+    if (catPieCtx) {
+        new Chart(catPieCtx.getContext('2d'), {
+            type: 'pie',
+            data: {
+                labels: ['Electronics', 'Fashion', 'Home', 'Sports'],
+                datasets: [{
+                    data: [45, 25, 20, 10],
+                    backgroundColor: ['#4a148c', '#6f42c1', '#d63384', '#ffc107'],
+                    borderWidth: 0
+                }]
+            },
+            plugins: [{
+                id: 'textOnSlices',
+                afterDatasetsDraw(chart) {
+                    const { ctx } = chart;
+                    
+                    chart.data.datasets.forEach((dataset, i) => {
+                        const meta = chart.getDatasetMeta(i);
+                        meta.data.forEach((element, index) => {
+                            const { x, y } = element.tooltipPosition();
+                            
+                            const text = dataset.data[index] + "%";
+                            
+                            ctx.fillStyle = 'white';
+                            ctx.font = 'bold 12px sans-serif';
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'middle';
+                            ctx.fillText(text, x, y);
+                        });
+                    });
+                }
+            }],
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { 
+                    legend: { position: 'right', labels: { boxWidth: 10, usePointStyle: true } }
+                }
+            }
+        });
+    }
+    
+    
+    // Sales_Report.html Line Graph (Weekly Profit)
+    const profitCtx = document.getElementById('profitLineChart');
+    if (profitCtx) {
+        new Chart(profitCtx.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Weekly Profit (RM)',
+                    data: [1200, 1900, 1500, 2200, 2800, 1800, 2500],
+                    borderColor: '#198754',
+                    backgroundColor: 'rgba(25, 135, 84, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#fff', 
+                    pointBorderColor: '#198754',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { 
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { grid: { display: false } }, 
+                    y: { grid: { display: true } }
+                }
+            }
+        });
+    }
+
+    // Sales_Report.html Area Chart (Customer Growth)
+    const growthCtx = document.getElementById('growthAreaChart');
+    if (growthCtx) {
+        new Chart(growthCtx.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['W1', 'W2', 'W3', 'W4'],
+                datasets: [{
+                    label: 'New Users',
+                    data: [50, 80, 120, 190],
+                    borderColor: '#0d6efd', 
+                    backgroundColor: 'rgba(13, 110, 253, 0.2)', 
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { 
+                    legend: { display: false } 
+                },
+                scales: { 
+                    x: { grid: { display: false } }, 
+                    y: { display: true } }
+            }
+        });
+    }
+
+    // Calender_Set Date Picker to Today (extra effects)
     const datePicker = document.getElementById('dateFilter');
     if (datePicker) {
         const today = new Date().toISOString().split('T')[0];
