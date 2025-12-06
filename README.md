@@ -7,8 +7,8 @@ Flux Admin is a responsive web application interface designed for managing e-com
 - **Responsive Design:** Works on desktop and mobile devices using Bootstrap 5.3.8
 - **Authentication:** A functional login page with error handling simulation.
 - **Navigation System:** fully responsive and consistent two-part navigation system.
-- **Dashboard Overview:** Visual data presentation using Chart.js (Bar charts) and key metrics cards.
-- **Dark Mode:** Fully functional light/dark theme toggle.
+- **Dashboard Overview:** Visual data presentation using Chart.js (Bar, Line, Doughnut, and Pie charts).
+- **Dark Mode:** Fully functional light/dark theme toggle across all pages.
 - **Data Management:**
     - **Products:** Add, Edit, and Delete products with image upload preview.
     - **Orders:** View order history with status filtering (Tabs).
