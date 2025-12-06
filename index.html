@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="bg-light d-flex align-items-center justify-content-center vh-100">
+    <div class="login-background d-flex align-items-center justify-content-center vh-100">
         <div class="card shadow-sm p-4 login-card">
             <div class="card-body">
 
@@ -19,7 +19,7 @@
                     </div>
                 </div>
 
-                <h3 class="text-center text-black mb-4 fw-bold">Flux Admin</h3>
+                <h3 class="text-center mb-4 fw-bold">Flux Admin</h3>
                 
                 <div id="loginError" class="alert alert-danger d-none" role="alert">
                     Invalid username or password!
@@ -28,11 +28,11 @@
                 <form id="loginForm">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter 'admin'" required>
+                        <input type="text" class="form-control" id="username" placeholder="Enter 'admin'" value="admin" required>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter '1234'" required>
+                        <input type="password" class="form-control" id="password" placeholder="Enter '1234'" value="1234" required>
                     </div>
                     <button type="submit" class="btn btn-warning w-100">Login</button>
                 </form>
@@ -47,5 +47,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>
