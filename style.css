@@ -4,37 +4,48 @@ body {
     transition: background-color 0.3s, color 0.3s; /* Smooth Dark Mode Transition */
 }
 
-/* ====================================================================== SIDEBAR STYLING --- */
+/* === SIDEBAR STYLING === */
 .sidebar {
     min-height: 100vh;
     box-shadow: 4px 0 10px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
+    background-color: #fff;
+    z-index: 100;
 }
 
 /* Sidebar Logo Area */
 .sidebar-logo {
-    padding: 20px;
+    padding: 1.5rem;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-.sidebar-logo img {
-    width: 50px;
+.sidebar-brand-icon {
+    background-color: #ffc107; /* Warning color */
+    color: #000;
+    width: 50px; 
     height: 50px;
     border-radius: 50%;
-    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .sidebar-logo h4 {
-    color: white;
     font-weight: bold;
-    margin: 0;
     font-size: 1.5rem;
 }
 
+.sidebar-heading {
+    padding: 0 1rem;
+    margin-bottom: 0.5rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
 /* Sidebar Links */
-.sidebar .nav-link {
+.nav-link {
     color: #adb5bd;
     font-size: 1.1rem;
     padding: 15px 25px;
@@ -42,17 +53,18 @@ body {
     transition: all 0.3s;
 }
 
-.sidebar .nav-link:hover, .sidebar .nav-link.active { /* Cursor Hover */
+.nav-link:hover, .nav-link.active { /* Cursor Hover */
     background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff !important; 
     border-left-color: #DFCBB2;
 }
 
-.sidebar .nav-link i {
+.nav-link i {
     width: 30px;
+    text-align: center;
 }
 
-/* ====================================================================== HEADER STYLING --- */
+/* === HEADER STYLING === */
 .main-header {
     background-color: #ffffff;
     box-shadow: 4px 0 10px rgba(0,0,0,0.1);
@@ -70,21 +82,122 @@ body {
     transition: background 0.2s;
 }
 
-[data-bs-theme="dark"] .header-icon {
-    color: #ddd;
-}
-
 .header-icon:hover {
     background-color: rgba(0,0,0,0.1);
 }
 
-/* ====================================================================== Dark Mode for Header & sidebar */
-[data-bs-theme="dark"] .main-header {
-    background-color: #212529;
-    border-bottom: 1px solid #333;
+/* Notification button in header */
+.notification-bell {
+    font-size: 1.2rem;
+    transition: color 0.2s;
 }
 
+.notification-bell:hover {
+    color: #0d6efd;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    padding: 0.25rem;
+    background-color: #dc3545;
+    border: 1px solid #fff;
+    border-radius: 50%;
+}
+
+.notification-menu {
+    width: 320px;
+    border: none;
+    padding: 0;
+}
+
+.notify-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0.375rem;
+}
+
+.notify-item {
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #f2f2f2;
+    white-space: normal;
+}
+
+.notify-item:active {
+    background-color: #f8f9fa;
+    color: inherit;
+}
+
+.notify-content .title {
+    margin-bottom: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.notify-content .time {
+    margin-bottom: 0;
+    font-size: 0.75rem;
+    color: #6c757d;
+}
+
+.notify-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.icon-success { background-color: rgba(25, 135, 84, 0.1); color: #198754; }
+.icon-warning { background-color: rgba(255, 193, 7, 0.1); color: #ffc107; }
+.icon-primary { background-color: rgba(13, 110, 253, 0.1); color: #0d6efd; }
+
+.notify-footer {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #0d6efd;
+    padding: 0.75rem;
+    font-weight: 700;
+}
+
+.metric-icon {
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+}
+
+.chart-box {
+    position: relative;
+    width: 100%;
+}
+
+.h-300 { height: 300px; }
+.h-250 { height: 250px; }
+.h-120 { height: 120px; }
+
+.user-avatar {
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%;
+}
+/* === Dark Mode for Header & sidebar === */
+
 /* --- LIGHT MODE (Light Theme) --- */
+[data-bs-theme="light"] .header-icon {
+    color: #272727;
+}
+
+[data-bs-theme="light"] .login-background {
+    background-color: #9b6d00 !important;
+}
+
 [data-bs-theme="light"] .sidebar {
     background-color: #ffffff !important;
     border-right: 1px solid #dee2e6;
@@ -107,6 +220,19 @@ body {
 }
 
 /* --- DARK MODE (Dark Theme) --- */
+[data-bs-theme="dark"] .header-icon {
+    color: #ddd;
+}
+
+[data-bs-theme="dark"] .login-background {
+    background-color: #9b6d00 !important;
+}
+
+[data-bs-theme="dark"] .main-header {
+    background-color: #212529;
+    border-bottom: 1px solid #333;
+}
+
 [data-bs-theme="dark"] .sidebar {
     background-color: #212529 !important;
     border-right: 1px solid #373b3e;
@@ -117,7 +243,7 @@ body {
     font-weight: 500;
 }
 
-[data-bs-theme="dark"] .sidebar .nav-link:hover, /* Hover Effect */
+[data-bs-theme="dark"] .sidebar .nav-link:hover,
 [data-bs-theme="dark"] .sidebar .nav-link.active {
     background-color: rgba(124, 95, 0, 0.126);
     color: #ffffff !important;
@@ -128,7 +254,7 @@ body {
     color: #ffffff !important;
 }
 
-[data-bs-theme="dark"] .card { /* --- CARD & MODAL FIXES FOR DARK MODE --- */
+[data-bs-theme="dark"] .card { 
     background-color: #2b3035;
     border-color: #373b3e;
     color: #fff;
@@ -138,7 +264,7 @@ body {
     color: #fff;
 }
 
-/* ===================================================================== LOGIN.html PAGE STYLING --- */
+/* === LOGIN.HTML === */
 .login-card {
     width: 100%;
     max-width: 400px;
@@ -149,7 +275,11 @@ body {
     height: 70px;
 }
 
-/* ====================================================================== PRODUCT.html --- */
+[data-bs-theme="dark"] .login-logo h3 {
+    color: #fff;
+}
+
+/* === PRODUCT.HTML === */
 /* images size */
 .product-card img {
     height: 300px;       
@@ -167,39 +297,39 @@ body {
     font-size: 1.1rem;
 }
 
-/* ====================================================================== ORDERS.html --- */
-.nav-tabs .nav-link { /* order tabs font */
+/* === ORDERS.HTML === */
+/* order tabs font */
+.nav-tabs .nav-link { 
     color: #6c757d;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 /* Effect in Light Mode*/
-[data-bs-theme="light"] .nav-tabs .nav-link:hover { /* order tabs Hover */
+[data-bs-theme="light"] .nav-tabs .nav-link:hover {
     background-color: #9b6d0033;
     color: #9b6d00 !important;
 }
 
-[data-bs-theme="light"] .nav-tabs .nav-link.active { /* order tabs font */
+[data-bs-theme="light"] .nav-tabs .nav-link.active {
     color: #5c4e00 !important;
     font-weight: bold;
     border-bottom: 3px solid #5c4e00;
 }
 
 /* Effect in Dark Mode */
-[data-bs-theme="dark"] .nav-tabs .nav-link:hover { /* Hover */
+[data-bs-theme="dark"] .nav-tabs .nav-link:hover {
     background-color: #9b6d0033;
     color: #ffffff !important;
 }
 
-[data-bs-theme="dark"] .nav-tabs .nav-link.active { /* Font Hover */
+[data-bs-theme="dark"] .nav-tabs .nav-link.active {
     color: #a68332 !important;
     font-weight: bold;
     border-bottom: 3px solid #a68332;
 }
 
-/* ======================================================================= CUSTOMERS.html --- */
-/* avatar */
+/* === CUSTOMERS.HTML === */
 .avatar-img {
     width: 40px;
     height: 40px;
@@ -208,22 +338,70 @@ body {
     margin-right: 10px;
 }
 
-/* --- SALES REPORT CHART --- */
+.search-box {
+    max-width: 300px;
+}
+
+
+/* === SALES_REPORT.HTML === */
 .chart-container-large {
     position: relative;
     height: 400px;
     width: 100%;
 }
 
-/*======================================================================== SETTING.html*/
-/* --- SETTINGS PAGE: Custom Active State --- */
+.chart-box {
+    position: relative;
+    width: 100%;
+}
+
+/* Height Modifiers */
+.h-200 { height: 200px; }
+.h-250 { height: 250px; }
+.h-350 { height: 350px; }
+
+/* Category Legend Colors */
+.cat-electronics {
+    color: #4a148c;
+}
+
+.cat-fashion {
+    color: #6f42c1;
+}
+
+.cat-home {
+    color: #d63384; 
+}
+
+.cat-sports {
+    color: #ffc107; 
+}
+
+/*=== SETTING.HTML ===*/
 .list-group-item.active {
     background-color: #9b6d00 !important;
     border-color: #9b6d00 !important;
     color: white !important;
 }
 
-[data-bs-theme="dark"] .list-group-item { /* Dark Mode overrides for Settings Menu */
+.store-logo-icon {
+    width: 64px;
+    height: 64px;
+    background-color: #ffc107; /* Bootstrap Warning color */
+    color: black;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.store-logo-input {
+    max-width: 300px;
+}
+
+
+/* Dark Mode overrides for Settings Menu */
+[data-bs-theme="dark"] .list-group-item { 
     background-color: #2b3035;
     color: #e0e0e0;
     border-color: #373b3e;
@@ -246,7 +424,7 @@ body {
     color: #e0e0e0;
 }
 
-/* Increase row height/gap ORDERS & CUSTOMER===== */
+/* Increase row height/gap ORDERS & CUSTOMER */
 .table-modern tbody td {
     padding-top: 25px !important;    
     padding-bottom: 25px !important; /
