@@ -12,34 +12,29 @@
 
     <div class="container-fluid">
         <div class="row">
+
             <div class="col-md-2 sidebar p-0 collapse d-md-block" id="sidebarMenu">
                 <div class="sidebar-logo">
-                    <div class="bg-warning text-black rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                    <div class="sidebar-brand-icon">
                         <i class="fa-solid fa-bolt fa-xl"></i>
                     </div>
                     <h4 class="mt-2">Flux Admin</h4>
                 </div>
 
                 <div class="d-flex flex-column flex-grow-1"> 
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-2 text-muted text-uppercase small">
-                        <span>Main Menu</span>
-                    </h6>
-        
-                    <a href="dashboard.html" class="nav-link mb-2"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
+                    <h6 class="sidebar-heading">Main Menu</h6>
+                    
+                    <a href="dashboard.html" class="nav-link active mb-2"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
                     <a href="products.html" class="nav-link mb-2"><i class="fa-solid fa-box me-2"></i> Products</a>
                     <a href="orders.html" class="nav-link mb-2"><i class="fa-solid fa-cart-shopping me-2"></i> Orders</a>
                     <a href="customers.html" class="nav-link mb-2"><i class="fa-solid fa-users me-2"></i> Customers</a>
 
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-2 text-muted text-uppercase small">
-                        <span>Analytics</span>
-                    </h6>
+                    <h6 class="sidebar-heading mt-4">Analytics</h6>
 
                     <a href="sales_report.html" class="nav-link mb-2"><i class="fa-solid fa-chart-line me-2"></i> Sales Report</a>
                     <a href="transactions.html" class="nav-link mb-2"><i class="fa-solid fa-file-invoice-dollar me-2"></i> Transactions</a>
 
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-2 text-muted text-uppercase small">
-                        <span>System</span>
-                    </h6>
+                    <h6 class="sidebar-heading mt-4">System</h6>
                     
                     <a href="settings.html" class="nav-link mb-2"><i class="fa-solid fa-gear me-2"></i> Settings</a>
                     <a href="help_center.html" class="nav-link mb-2"><i class="fa-solid fa-circle-question me-2"></i> Help Center</a>
@@ -49,7 +44,7 @@
 
             <main class="col-md-10 ms-sm-auto p-0">
                 
-                <header class="main-header d-flex justify-content-between align-items-center sticky-top">
+                <header class="main-header d-flex justify-content-between align-items-center sticky-top border-bottom">
                     
                     <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
                         <i class="fa-solid fa-bars"></i>
@@ -61,21 +56,62 @@
                         
                         <i class="fa-solid fa-moon header-icon" id="themeIcon" onclick="toggleTheme()" title="Toggle Theme"></i>
                         
-                        <div class="position-relative">
-                            <i class="fa-solid fa-bell header-icon"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border-light rounded-circle">
-                                <span class="visually-hidden">New alerts</span>
-                            </span>
-                        </div>
-
                         <div class="dropdown">
-                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark" data-bs-toggle="dropdown">
+                            <a href="#" class="text-body position-relative" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-bell notification-bell"></i>
+                                <span class="notification-badge">
+                                    <span class="visually-hidden">New alerts</span>
+                                </span>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end notification-menu shadow">
+                                <li class="notify-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="mb-0 fw-bold">Notifications</h6>
+                                        <span class="badge bg-primary rounded-pill">3 New</span>
+                                    </div>
+                                </li>
+                                
+                                <li>
+                                    <a class="dropdown-item notify-item" href="orders.html">
+                                        <div class="notify-icon icon-success"><i class="fa-solid fa-cart-shopping"></i></div>
+                                        <div class="notify-content">
+                                            <p class="title">New Order #1024</p>
+                                            <p class="time">Just now</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item notify-item" href="products.html">
+                                        <div class="notify-icon icon-warning"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                        <div class="notify-content">
+                                            <p class="title">Low Stock Alert</p>
+                                            <p class="time">Product ID: 450 is low.</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item notify-item" href="customers.html">
+                                        <div class="notify-icon icon-primary"><i class="fa-solid fa-user-plus"></i></div>
+                                        <div class="notify-content">
+                                            <p class="title">New Customer</p>
+                                            <p class="time">Diva AA registered.</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider m-0"></li>
+                                <li><a class="dropdown-item notify-footer" href="#">View All Notifications</a></li>
+                            </ul>
+                        </div>
+            
+                        <div class="dropdown">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-body" data-bs-toggle="dropdown">
                                 <img src="https://ui-avatars.com/api/?name=Admin+User&background=random" alt="" width="32" height="32" class="rounded-circle me-2">
                                 <span class="d-none d-sm-inline">Admin User</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end shadow">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="settings.html">Profile</a></li>
+                                <li><a class="dropdown-item" href="settings.html">Settings</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item text-danger" href="index.html">Logout</a></li>
                             </ul>
@@ -83,13 +119,13 @@
                     </div>
                 </header>
 
-                <!-- DASHBOARD CONTENT -->
                 <div class="p-4">
 
+                    <!-- DASHBOARD OVERVIEW -->
                     <h2 class="mb-4">Dashboard Overview</h2>
 
                     <div class="d-flex justify-content-end align-items-center mb-4">
-                        <div class="d-flex gap-2 ">
+                        <div class="d-flex gap-2">
                             <div class="input-group shadow-sm">
                                 <span class="input-group-text text-muted"><i class="fa-solid fa-calendar-days"></i></span>
                                 <input type="date" class="form-control" id="dateFilter">
@@ -98,9 +134,9 @@
                         </div>
                     </div>
                     
-                    <!-- 1. KEY METRICS ROWS -->
                     <div class="row mb-4 g-3">
-                        <!-- Total Sales -->
+
+                        <!-- Total Revenue -->
                         <div class="col-md-3">
                             <div class="card shadow-sm border-start border-4 border-success h-100">
                                 <div class="card-body">
@@ -110,7 +146,7 @@
                                             <h3 class="mb-0 text-success">RM 45,250</h3>
                                             <small class="text-success"><i class="fa-solid fa-arrow-up"></i> +12% vs last month</small>
                                         </div>
-                                        <div class="bg-success-subtle text-success p-2 rounded">
+                                        <div class="metric-icon bg-success-subtle text-success">
                                             <i class="fa-solid fa-sack-dollar fa-lg"></i>
                                         </div>
                                     </div>
@@ -128,7 +164,7 @@
                                             <h3 class="mb-0 text-info">1,205</h3>
                                             <small class="text-success"><i class="fa-solid fa-user-plus"></i> +5 new today</small>
                                         </div>
-                                        <div class="bg-info-subtle text-info p-2 rounded">
+                                        <div class="metric-icon bg-info-subtle text-info">
                                             <i class="fa-solid fa-users fa-lg"></i>
                                         </div>
                                     </div>
@@ -146,7 +182,7 @@
                                             <h3 class="mb-0 text-primary">45</h3>
                                             <small class="text-muted">Pending Processing</small>
                                         </div>
-                                        <div class="bg-primary-subtle text-primary p-2 rounded">
+                                        <div class="metric-icon bg-primary-subtle text-primary">
                                             <i class="fa-solid fa-cart-shopping fa-lg"></i>
                                         </div>
                                     </div>
@@ -164,7 +200,7 @@
                                             <h3 class="mb-0 text-danger">5</h3>
                                             <small class="text-danger">Needs Attention</small>
                                         </div>
-                                        <div class="bg-danger-subtle text-danger p-2 rounded">
+                                        <div class="metric-icon bg-danger-subtle text-danger">
                                             <i class="fa-solid fa-triangle-exclamation fa-lg"></i>
                                         </div>
                                     </div>
@@ -173,8 +209,9 @@
                         </div>
                     </div>
 
-                    <!-- 2. CHARTS SECTION -->
+                    <!-- CHARTS SECTION -->
                     <div class="row mb-4 g-3">
+
                         <!-- Monthly Sales Bar Chart -->
                         <div class="col-lg-8">
                             <div class="card shadow-sm h-100">
@@ -183,21 +220,21 @@
                                     <button class="btn btn-sm btn-outline-light text-muted"><i class="fa-solid fa-ellipsis"></i></button>
                                 </div>
                                 <div class="card-body">
-                                    <div style="position: relative; height: 300px; width: 100%;">
+                                    <div class="chart-box h-300">
                                         <canvas id="salesBarChart"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Customer Demographics (Malaysian States) -->
+                        <!-- Customer Demographics -->
                         <div class="col-lg-4">
                             <div class="card shadow-sm h-100">
                                 <div class="card-header bg-transparent border-0 py-3">
                                     <h6 class="mb-0 fw-bold"><i class="fa-solid fa-map-location-dot me-2 text-info"></i>Customer By State</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div style="position: relative; height: 250px; width: 100%;">
+                                    <div class="chart-box h-250">
                                         <canvas id="demographicChart"></canvas>
                                     </div>
                                     <div class="mt-3 text-center small text-muted">
@@ -208,7 +245,48 @@
                         </div>
                     </div>
 
-                    <!-- 3. RECENT ORDERS TABLE -->
+                    <!-- SMALL STATISTIC TABLE -->
+                    <div class="row mb-4 g-3">
+
+                        <!-- Device Usage -->
+                        <div class="col-md-4">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="text-muted small text-uppercase fw-bold mb-2">Device Usage</h6>
+                                    <!-- Use Class h-120 -->
+                                    <div class="chart-box h-120">
+                                        <canvas id="miniPieChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Weekly Traffic -->
+                        <div class="col-md-4">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="text-muted small text-uppercase fw-bold mb-2">Weekly Traffic</h6>
+                                    <div class="chart-box h-120">
+                                        <canvas id="miniLineChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Active Users -->
+                        <div class="col-md-4">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="text-muted small text-uppercase fw-bold mb-2">Active Users</h6>
+                                    <div class="chart-box h-120">
+                                        <canvas id="miniAreaChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- RECENT ORDERS TABLE -->
                     <div class="card shadow-sm border-0">
                         <div class="table-responsive rounded-3 border shadow-sm">
                             <div class="card-header bg-transparent border-0 py-3">
@@ -216,8 +294,8 @@
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive rounded-3">
-                                    <table class="table table-hover align-middle mb-0 table-modern text-center">
-                                        <thead class="small text-uppercase">
+                                    <table class="table table-hover align-middle mb-0 text-center">
+                                        <thead class="small text-uppercase bg-light">
                                             <tr>
                                                 <th class="text-start ps-4">Order ID</th>
                                                 <th class="text-start">Customer</th>
@@ -228,12 +306,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td class="text-start ps-4">
-                                                    <span class="fw-bold text-primary">#ORD-9921</span>
-                                                </td>
+                                                <td class="text-start ps-4"><span class="fw-bold text-primary">#ORD-9921</span></td>
                                                 <td class="text-start">
                                                     <div class="d-flex align-items-center">
-                                                        <img src="https://ui-avatars.com/api/?name=Ali&background=random" class="rounded-circle me-2" width="30" height="30">
+                                                        <img src="https://ui-avatars.com/api/?name=Ali&background=random" class="user-avatar me-2">
                                                         <div class="fw-bold">Ali Ahmad</div>
                                                     </div>
                                                 </td>
@@ -242,12 +318,10 @@
                                                 <td><span class="badge bg-success-subtle text-success border border-success rounded-pill px-3">Paid</span></td>
                                             </tr>
                                             <tr>
-                                                <td class="text-start ps-4">
-                                                    <span class="fw-bold text-primary">#ORD-9922</span>
-                                                </td>
+                                                <td class="text-start ps-4"><span class="fw-bold text-primary">#ORD-9922</span></td>
                                                 <td class="text-start">
                                                     <div class="d-flex align-items-center">
-                                                        <img src="https://ui-avatars.com/api/?name=Sarah&background=random" class="rounded-circle me-2" width="30" height="30">
+                                                        <img src="https://ui-avatars.com/api/?name=Sarah&background=random" class="user-avatar me-2">
                                                         <div class="fw-bold">Sarah Tan</div>
                                                     </div>
                                                 </td>
@@ -256,12 +330,10 @@
                                                 <td><span class="badge bg-warning-subtle text-warning border border-warning rounded-pill px-3">Pending</span></td>
                                             </tr>
                                             <tr>
-                                                <td class="text-start ps-4">
-                                                    <span class="fw-bold text-primary">#ORD-9923</span>
-                                                </td>
+                                                <td class="text-start ps-4"><span class="fw-bold text-primary">#ORD-9923</span></td>
                                                 <td class="text-start">
                                                     <div class="d-flex align-items-center">
-                                                        <img src="https://ui-avatars.com/api/?name=Raj&background=random" class="rounded-circle me-2" width="30" height="30">
+                                                        <img src="https://ui-avatars.com/api/?name=Raj&background=random" class="user-avatar me-2">
                                                         <div class="fw-bold">Raj Kumar</div>
                                                     </div>
                                                 </td>
