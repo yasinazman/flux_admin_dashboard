@@ -4,18 +4,19 @@
 Flux Admin is a responsive web application interface designed for managing e-commerce operations. It allows administrators to track sales, manage product inventory, view customer details, and monitor transactions. This project was developed as an individual assignment for IMS566.
 
 ## Features Included
-- **Responsive Design:** Works on desktop and mobile devices using Bootstrap 5.3.8
+- **Responsive Design:** Fully responsive across desktop and mobile devices, built with Bootstrap 5.3.8.
 - **Authentication:** A functional login page with error handling simulation.
-- **Navigation System:** fully responsive and consistent two-part navigation system.
-- **Dashboard Overview:** Visual data presentation using Chart.js (Bar, Line, Doughnut, and Pie charts).
+- **Navigation System:** Fully responsive and consistent two-part navigation system.
+- **Dashboard Overview:** Provides users with a comprehensive summary of store performance through key statistical metrics, including total revenue, total customers, new orders, and low stock alerts. It also displays monthly performance, customer distribution by state, device usage, weekly traffic, active users (today vs. yesterday), and recent orders, all visualized for easy monitoring and informed decision-making.
 - **Dark Mode:** Fully functional light/dark theme toggle across all pages.
 - **Data Management:**
-    - **Products:** Add, Edit, and Delete products with image upload preview.
-    - **Orders:** View order history with status filtering (Tabs).
-    - **Customers:** Manage customer lists with add customer, search and delete functionality.
-    - **Sales Report:** Detailed financial breakdown with downloadable PDF and interactive date-specific visualization.
-    - **Transactions:** View and filter financial records.
-    - **Settings & Support:** Configuration forms for store settings and an FAQ help center.
+    - **Products:** Manage product catalog with add, edit, and delete functionalities, including image upload with preview.
+    - **Orders:** Enables viewing and filtering orders by status via tabs. The table displays Order ID, Date, Customer Name, Status, Amount, and Action, which includes a button to view detailed customer information.
+    - **Customers:** Provides streamlined management of customer records with integrated add, edit, search, and delete features.
+    - **Sales Report:** Comprehensive financial reporting with downloadable PDFs, interactive date-filtered visualizations, and Chart.js charts including Bar, Line, Area, Doughnut, and Pie.
+    - **Transactions:** View and filter financial records by status, ID, or customer name for streamlined record management.
+    - **Settings:** Manage and update all store configurations, including store logo, store name, owner name, support email, currency (RM/SDG/USD), and enable maintenance mode.
+    - **Support:** Access an FAQ/help center for user assistance and guidance.
 
 ## How to Test (Login Credentials)
 To access the dashboard, use the following hardcoded credentials:
